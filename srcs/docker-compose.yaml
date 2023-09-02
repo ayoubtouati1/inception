@@ -6,7 +6,7 @@ services:
   build: ./requirements/nginx/ 
   #image: nginx
   networks:
-        - private_netnetwork
+        - private_network
   restart: unless-stopped
   ports:
           - "8080:443"
@@ -19,14 +19,24 @@ services:
   build: ./requirements/wordpress/ 
   #image: wordpress:php8.2-fpm-alpine
   networks:
-        - private_netnetwork
-  ports:
-        - "9000:9000"
+        - private_network
   volumes:
           - wp_data:/var/www/html
+  depends_on:
+   - mariadb
+ mariadb:
+  container_name: mariadb
+  build: ./requirements/mariadb/ 
+  #image: mariadb
+  networks:
+   - private_network
+  restart: always
 volumes:
  wp_data:
   name: nginx
   driver: local
+ db_data:
+  name: nginx
+  driver: local
 networks:
- private_netnetwork:
+ private_network:
