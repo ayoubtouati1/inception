@@ -9,7 +9,7 @@ services:
         - private_network
   restart: unless-stopped
   ports:
-          - "8080:443"
+          - "8100:443"
   volumes:
            - wp_data:/var/www/html
   depends_on:
@@ -36,7 +36,7 @@ volumes:
   name: nginx
   driver: local
  db_data:
-  name: nginx
+  name: maria
   driver: local
 networks:
  private_network:
