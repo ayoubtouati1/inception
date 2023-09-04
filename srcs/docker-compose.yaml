@@ -33,15 +33,19 @@ services:
   build: ./requirements/mariadb/ 
   env_file:
       - .env
+  volumes:
+          - db_data:/var/lib/mysql
   networks:
       - private_network
   restart: always
 volumes:
  wp_data:
-  name: nginx
+  name: wordpress
   driver: local
  db_data:
-  name: maria
+  name: mariadb
   driver: local
+  driver_opts:
+      device: 
 networks:
  private_network:

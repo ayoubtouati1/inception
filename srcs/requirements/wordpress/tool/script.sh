@@ -15,6 +15,8 @@ sed -i "s/database_name_here/$DB_NAME/g" wp-config.php
 
 # wp config create --dbhost=mariadb --dbname=mariadb --dbuser=atouati --dbpass=Testing2 --allow-root
 
-wp core install --url=$DB_HOSTNAME --title=touati_site --admin_user=atouati --admin_password=$DB_PASSWORD --admin_email=atouati@gmail.com --allow-root
+wp core install --url=$DOMAIN_NAME --title=touati_site --admin_user=atouati --admin_password=$DB_PASSWORD --admin_email=atouati@gmail.com --allow-root
+
+wp user create $AUTHOR_NAME test@gmail.com --user_pass=$AUTHOR_PASSWORD --role=author --allow-root
 
 php-fpm7.4 --nodaemonize

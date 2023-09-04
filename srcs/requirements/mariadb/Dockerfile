@@ -10,8 +10,7 @@ RUN chmod +x /script.sh
 
 RUN sed -i '30c\bind-address            = 0.0.0.0' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN ./script.sh
 
 EXPOSE 3306
 
-CMD ["mariadbd"]
+CMD ["./script.sh"]
