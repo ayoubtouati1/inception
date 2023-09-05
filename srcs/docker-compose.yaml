@@ -6,7 +6,6 @@ services:
   build: ./requirements/nginx/
   env_file:
       - .env
-  #image: nginx
   networks:
         - private_network
   restart: unless-stopped
@@ -42,10 +41,16 @@ volumes:
  wp_data:
   name: wordpress
   driver: local
+  driver_opts:
+    device: /home/atouati/data/wp
+    o: bind
+    type: none
  db_data:
   name: mariadb
   driver: local
   driver_opts:
-      device: 
+    device: /home/atouati/data/db
+    o: bind
+    type: none
 networks:
  private_network:
